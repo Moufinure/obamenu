@@ -20,8 +20,8 @@
 import subprocess, glob, os
 
 userhome = os.path.expanduser('~')
-applications_dirs = ("/usr/share/applications", userhome + "/.local/share/applications","/var/lib/flatpak/exports/share/applications")
-image_dir_base = ("/usr/share", "/var/lib/flatpak/exports/share") # without "pixmaps" -/usr/local/share in FreeBSD, /usr/share on linux
+applications_dirs = ("/usr/share/applications", "/usr/local/share/applications", userhome + "/.local/share/applications","/var/lib/flatpak/exports/share/applications")
+image_dir_base = ("/usr/share", "/usr/local/share", "/var/lib/flatpak/exports/share") # without "pixmaps" -/usr/local/share in FreeBSD, /usr/share on linux
 try: #automatic theme selection
 	with open(userhome + "/.gtkrc-2.0", 'r') as readobj:
 		for line in readobj:
@@ -31,13 +31,13 @@ except IOError:
 	selected_theme = "Adwaita" #fallback theme
 
 #selected_theme = "gnome" # direct theme selection, don't make it hicolor.   ***** SOME DISTRIBUTIONS REQUIRES THIS OPTION UNCOMMENTED.
-application_groups = ("AudioVideo", "Development", "Editors",  "Engineering", "Games", "Graphics", "Internet",  "Multimedia", "Office",  "Other",  "Settings", "System",  "Utilities") # enter here new category as you wish, it will be sorted 
+application_groups = ("Astronomy", "AudioVideo", "Development", "Editors",  "Engineering", "Games", "Graphics", "Internet",  "Multimedia", "Office",  "Other", "Science", "Settings", "System",  "Utilities") # enter here new category as you wish, it will be sorted 
 group_aliases = {"Audio":"Multimedia","Video":"Multimedia","AudioVideo":"Multimedia","Network":"Internet","Game":"Games", "Utility":"Utilities", "Development":"Editors","GTK":"",  "GNOME":""}
 ignoreList = ("gtk3-icon-browser","evince-previewer", "Ted",  "wingide3.2", "python3.4", "feh","xfce4-power-manager-settings", "picom","compton","yad-icon-browser" )
 prefixes = ("legacy","categories","apps","devices","mimetypes","places","preferences","actions", "status","emblems") #added for prefered icon dirs and sizes. could be gathered automatically but wouldn't be sorted like this
 iconSizes = ("48","32","24","16","48x48","40x40","36x36","32x32","24x24","64x64","72x72","96x96","16x16","128x128","256x256","scalable","apps","symbolic")
-terminal_string = "xterm -e"         # your favourites terminal exec string
-simpleOBheader = True  # print full xml style OB header
+terminal_string = "urxvt -e"         # your favourites terminal exec string
+simpleOBheader = False  # print full xml style OB header
 # --- End of user config ---
 
 #constants and list for icon list generating
